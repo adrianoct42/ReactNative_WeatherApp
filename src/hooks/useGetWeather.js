@@ -38,6 +38,7 @@ export const useGetWeather = () => {
    setLon(location.coords.longitude)
    await fetchWeatherData()
   })() // Esse () no final é para IMEDIATAMENTE INVOCARMOS essa função bitela.
+  // eslint-disable-next-line react-hooks/exhaustive-deps
  }, [lat, lon]) // Se esse [] estiver vazio nos argumentos, significa que o useEffect só será executado UMA ÚNICA VEZ.
  return [loading, error, weather]
 }

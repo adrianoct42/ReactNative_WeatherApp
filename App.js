@@ -1,11 +1,18 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { ActivityIndicator, View, StyleSheet } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native'
 import Tabs from './src/components/Tabs'
-import Counter from './src/demonstration/Counter'
+// import Counter from './src/demonstration/Counter'
 import { useGetWeather } from './src/hooks/useGetWeather'
+import ErrorItem from './src/components/ErrorItem'
 
-// api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}
+/*
+Mensagem para mim mesmo em consultas:
+Esse projeto não utiliza de useContext, um hook muito famoso que serve para acesso de informações
+que estão muito longe na árvore. Funciona mais ou menos como StateManagement em flutter, para que,
+nesse caso, você evite aninhamentos enormes de props entre os componentes!
+Um exemplo simples: https://dev.to/ino_gu/utilizando-usecontext-no-react-4lh9
+*/
 
 const App = () => {
  const [loading, error, weather] = useGetWeather()
@@ -21,7 +28,7 @@ const App = () => {
 
  return (
   <View style={styles.container}>
-   <ActivityIndicator size={'large'} color={'blue'} />
+   {error ? <ErrorItem /> : <ActivityIndicator size={'large'} color={'blue'} />}
   </View>
  )
 }
